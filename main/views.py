@@ -21,8 +21,8 @@ def home(request):
             frequency_penalty=0,
             presence_penalty=0
         )
-        answer = response['choices']# Get the response from the API
-        return render(request, 'home.html', {'answer': answer.text})
+        answer = response['choices'][0] # Get the response from the API
+        return render(request, 'home.html', {'answer': answer})
     return render(request, 'home.html')
 
 
