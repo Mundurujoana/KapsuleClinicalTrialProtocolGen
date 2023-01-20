@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <html>
+        <head>
+          <style>
+            /* Internal CSS */
+            #background {
+              font-size: 18px;
+              font-weight: bold;
+              margin-bottom: 20px;
+            }
+            #objectives {
+              font-size: 16px;
+              margin-bottom: 20px;
+            }
+            #methods {
+              font-size: 16px;
+              margin-bottom: 20px;
+            }
+            #expected-results {
+              font-size: 16px;
+              margin-bottom: 20px;
+            }
+          </style>
+        </head>
+        <body>
+          <div>
+            <label for="question-input">Enter your question:</label>
+            <input type="text" id="question-input">
+          </div>
+          <button id="search-button">Search</button>
+          <div id="background"></div>
+          <div id="objectives"></div>
+          <div id="methods"></div>
+          <div id="expected-results"></div>
+   
+        <script>
+    //  Add event listener to search button
+    let searchButton = document.getElementById("search-button");
+    searchButton.addEventListener("click", function() {
+        // Get the value of the input field
+        let question = document.getElementById("question-input").value;
+
+        // Create a JSON object with the question
+        let data = {'question': question};
+
+        // Make a POST request to the view function
+        fetch('/path/to/view', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            // Assign data to variables
+            let background = data.background;
+            let objectives = data.objectives;
+            let methods = data.methods;
+            let expected_results = data.expected_results;
+
+            // Insert data into the page
+            document.getElementById("background").innerHTML = background;
+            document.getElementById("objectives").innerHTML = objectives.join("<br>");
+            document.getElementById("methods").innerHTML = methods;
+            document.getElementById("expected-results").innerHTML = expected_results;
+        });
+    });
+</script>  
+
+</body>
+</html>

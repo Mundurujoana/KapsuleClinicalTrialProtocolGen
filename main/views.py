@@ -3,6 +3,7 @@ from .models import*
 import openai, requests
 from django.http import HttpResponse
 # from openai import OpenAI
+import os
 
 # Create your views here.
 
@@ -11,17 +12,19 @@ def home(request):
     if request.method == 'POST':
         question = request.POST.get('question')
         # Call OpenAI API
-        openai.api_key = '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'
+        openai.api_key = ("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")
         response = openai.Completion.create(
-            engine="davinci",
+            engine="text-davinci-003",
             prompt=question,
-            max_tokens=1000,
-            temperature=0.1,
+            max_tokens=2500,
+            temperature=0.9,
             top_p=1,
             frequency_penalty=0,
-            presence_penalty=0
+            presence_penalty=0.6,
+            stop=["500000"]
         )
-        answer = response['choices'][0] # Get the response from the API
+        answer = response['choices'][0].text # Get the response from the API
+        print(answer)
         return render(request, 'home.html', {'answer': answer})
     return render(request, 'home.html')
 

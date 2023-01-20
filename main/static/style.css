@@ -1,0 +1,24 @@
+#study-protocol {
+    width: 80%;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+  }
+  
+  #study-protocol h1 {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  
+  #study-protocol h2 {
+    margin-top: 50px;
+  }
+  
+  #study-protocol ul {
+    list-style-type: square;
+    margin-left: 20px;
+  }
+  
+  #study-protocol p {
+    line-height: 1.5;
+  }
+  
