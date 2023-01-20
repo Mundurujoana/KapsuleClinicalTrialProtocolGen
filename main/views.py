@@ -4,15 +4,18 @@ import openai, requests
 from django.http import HttpResponse
 # from openai import OpenAI
 import os
+from dotenv import load_dotenv
 
 # Create your views here.
 
 def home(request):
+    load_dotenv()
     # Send the request to the OpenAI API
     if request.method == 'POST':
         question = request.POST.get('question')
         # Call OpenAI API
-        openai.api_key = ("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")
+        openai.api_key = os.environ.get("api_key")
+        # openai.api_key = ("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")
         response = openai.Completion.create(
             engine="text-davinci-003",
             prompt=question,
